@@ -26,6 +26,8 @@
             <h3>Links:</h3>
             &nbsp;&nbsp;<a href="https://github.com/DeathJockey/Alpha-Scene-Animator">DeathJockey's Alpha-Scene-Animator</a>
             <br />
+            &nbsp;&nbsp;<a href="https://raw.github.com/DeathJockey/Alpha-Scene-Animator/master/docs/syntax.txt">SCP syntax - this converter is fully compatible</a>
+            <br />
             &nbsp;&nbsp;<a href="https://github.com/Rickythemaniac/ASC">ASC (This project)</a>
             <h3>Twitter:</h3>
             &nbsp;&nbsp;<a href="https://twitter.com/DeathJockey">DeathJockey's twitter</a>
