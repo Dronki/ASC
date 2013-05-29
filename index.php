@@ -40,6 +40,16 @@ $(document).ready(function(){
             if(entities[i].match(/<(scene)[^>](action="(.*?)["]) (value="(.*?)["]) \/>/g)){
                 entities[i] = entities[i].replace(/<(scene)[^>](action="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 $3 $5");
             }
+            //Scene add entity, example:
+            //<scene action="add" key="entity" value="bulbasaur" />
+            if(entities[i].match(/<(scene)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) \/>/)){
+                entities[i] = entities[i].replace(/<(scene)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 $5 $3 $7");
+            }
+            //Move entity, example:
+            //<scene action="moveto" key="entity" value="bulbasaur" x="21" y="21" />
+            if(entities[i].match(/<(scene)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) (x="(.*?)["]) (y="(.*?)["]) \/>/g)){
+                entities[i] = entities[i].replace(/<(scene)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) (x="(.*?)["]) (y="(.*?)["]) \/>/, "@$1 $5 $3 $7 $9,$11");
+            }
             //Audio-syntax, example:
             //<audio toggle="volume" value="50" />
             if(entities[i].match(/<(audio)[^>](toggle="(.*?)["]) (value="(.*?)["]) \/>/g)){
@@ -58,12 +68,12 @@ $(document).ready(function(){
             //Graphics-toggle, example:
             //<graphics toggle="overlay" value="on" />
             if(entities[i].match(/<(graphics)[^>](toggle="(.*?)["]) (value="(.*?)["]) \/>/g)){
-                entities[i] = entities[i].replace(/<(graphics)[^>](toggle="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 $3 $5");
+                entities[i] = entities[i].replace(/<(graphics)[^>](toggle="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 set $3 state $5");
             }
             //Graphics-action, example:
             //<graphics action="overlay" key="alpha" value="255,255,255" />
             if(entities[i].match(/<(graphics)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) \/>/g)){
-                entities[i] = entities[i].replace(/<(graphics)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 $3 $5 $7");
+                entities[i] = entities[i].replace(/<(graphics)[^>](action="(.*?)["]) (key="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 set $3 $5 $7");
             }
             //End alpha-scene, example:
             //<end type="terminate" />
@@ -73,17 +83,27 @@ $(document).ready(function(){
             //Dialog-type, example:
             //<dialog title="???" duration="1000">Hi, I'm a regex</dialog>
             if(entities[i].match(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/g)){
-                entities[i] = entities[i].replace(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/, '@$1 "$3" 5 "$6" $5');
+                entities[i] = entities[i].replace(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/, '@$1 {"$3";5;"$6";$5}');
             }
-            if(entities[i].match(/<(dialog)[^>](action="(.*?)["]) \/>g/)){
+            //<dialog action="clear" />
+            if(entities[i].match(/<(dialog)[^>](action="(.*?)["]) \/>/g)){
                 entities[i] = entities[i].replace(/<(dialog)[^>](action="(.*?)["]) \/>/, "@$1 $3");
             }
             if(entities[i].match(/<(dialog3p)[^>](duration="(.*?)["])>(.*?)<\/dialog3p>/g)){
-                entities[i] = entities[i].replace(/<(dialog3p)[^>](duration="(.*?)["])>(.*?)<\/dialog3p>/, '@$1 "$4" $3');
+                entities[i] = entities[i].replace(/<(dialog3p)[^>](duration="(.*?)["])>(.*?)<\/dialog3p>/, '@$1 {"$4";$3}');
             }
             if(entities[i].match(/<(dialog3p)[^>](action="(.*?)["]) \/>/g)){
                entities[i] = entities[i].replace(/<(dialog3p)[^>](action="(.*?)["]) \/>/, "@$1 $3"); 
             }
+            //Wait-command
+            if(entities[i].match(/<(wait)[^>](value="(.*?)["]) \/>/g)){
+                entities[i] = entities[i].replace(/<(wait)[^>](value="(.*?)["]) \/>/, "@$1 $3");
+            }
+            //camera-command
+            if(entities[i].match(/<(camera)[^>](action="(.*?)["]) (value="(.*?)["]) \/>/g)){
+                entities[i] = entities[i].replace(/<(camera)[^>](action="(.*?)["]) (value="(.*?)["]) \/>/, "@$1 $3 $5");
+            }
+            
             //$('#xml').val(entities[i]);
             $('#alpha').val(entities[i]);
         }
