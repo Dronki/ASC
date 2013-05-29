@@ -1,0 +1,58 @@
+/* 
+    Document   : style.css
+    Created on : 2013-maj-28, 16:12:19
+    Author     : root
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body {
+    background-color: #c6c6c6;
+    font-family: ‘Lucida Console’, Monaco, monospace;
+}
+
+#toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    display: block;
+    height: 32px;
+    width: 100%;
+    background-color: #d9d9d9;
+}
+
+
+#xmlScript {
+    float: left;
+    position: relative;
+    top: 40px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+
+#alpahScript {
+    float: right;
+    position: relative;
+    top: 40px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: auto;
+    
+    width: 450px;
+    height: 550px;
+}
+
+input[type="text"],
+textarea {
+    width: 450px;
+    height: 550px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
