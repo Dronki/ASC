@@ -10,35 +10,10 @@
 $(document).ready(function(){
     
     $('#xml').bind('input propertychange', function() {
-        
-    });
-    
-    $("#xml").keydown(function(e) {
-        if(e.keyCode === 9) { // tab was pressed
-            // get caret position/selection
-            var start = this.selectionStart;
-            var end = this.selectionEnd;
-
-            var $this = $(this);
-            var value = $this.val();
-
-            // set textarea value to: text before caret + tab + text after caret
-            $this.val(value.substring(0, start)
-                        + "\t"
-                        + value.substring(end));
-
-            // put caret at right position again (add one for the tab)
-            this.selectionStart = this.selectionEnd = start + 1;
-
-            // prevent the focus lose
-            e.preventDefault();
-        }
-    });
-    
-    $('#convert').bind('click', function() {
         var xmlScript = $('#xml').val();
         var entities = [];
         entities = xmlScript.split();
+        
         for(var i = 0; i < entities.length; i++) {
             
             //Remove double-spaces and script
@@ -98,7 +73,7 @@ $(document).ready(function(){
             //Dialog-type, example:
             //<dialog title="???" duration="1000">Hi, I'm a regex</dialog>
             if(entities[i].match(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/g)){
-                entities[i] = entities[i].replace(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/, '@$1  "$3" 5 "$6" $5');
+                entities[i] = entities[i].replace(/<(dialog)[^>](title="(.*?)["]) (duration="(.*?)["])>(.*?)<\/dialog>/, '@$1 "$3" 5 "$6" $5');
             }
             if(entities[i].match(/<(dialog)[^>](action="(.*?)["]) \/>g/)){
                 entities[i] = entities[i].replace(/<(dialog)[^>](action="(.*?)["]) \/>/, "@$1 $3");
@@ -109,9 +84,30 @@ $(document).ready(function(){
             if(entities[i].match(/<(dialog3p)[^>](action="(.*?)["]) \/>/g)){
                entities[i] = entities[i].replace(/<(dialog3p)[^>](action="(.*?)["]) \/>/, "@$1 $3"); 
             }
-            console.log(entities[i]);
-            $('#alphaScript').empty();
-            $('#alphaScript').html(entities[i]);
+            //$('#xml').val(entities[i]);
+            $('#alpha').val(entities[i]);
+        }
+    });
+    
+    $("#xml").keydown(function(e) {
+        if(e.keyCode === 9) { // tab was pressed
+            // get caret position/selection
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+
+            var $this = $(this);
+            var value = $this.val();
+
+            // set textarea value to: text before caret + tab + text after caret
+            $this.val(value.substring(0, start)
+                        + "\t"
+                        + value.substring(end));
+
+            // put caret at right position again (add one for the tab)
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            e.preventDefault();
         }
     });
     
@@ -121,12 +117,15 @@ $(document).ready(function(){
     </head>
     <body>
         <div id="toolbar">
-            <input type="submit" id="convert" value="Convert XML">
+            <img src="assets/logo.png" id="logo" height ="32" width="32" />
+            <a href="#">Converter</a> | 
+            <a href="about.php" id="aboutLink">About</a>
         </div>
         <div id="xmlScript">
             <textarea id="xml" cols="80" rows="40"></textarea>
         </div>
         <div id="alpahScript">
+            <textarea id="alpha" cols="80" rows="40"></textarea>
         </div>
     </body>
 </html>
