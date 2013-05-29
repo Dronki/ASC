@@ -11,7 +11,7 @@
         <div id="toolbar">
             <img src="assets/logo.png" id="logo" height ="32" width="32" />
             <a href="index.php">Converter</a> | 
-            <a href="#" id="aboutLink">About</a>
+            <span class="active">About</span>
         </div>
         <div id="content">
             <h1>About</h1>

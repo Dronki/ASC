@@ -118,14 +118,14 @@ $(document).ready(function(){
     <body>
         <div id="toolbar">
             <img src="assets/logo.png" id="logo" height ="32" width="32" />
-            <a href="#">Converter</a> | 
+            <span class="active">Converter</span> | 
             <a href="about.php" id="aboutLink">About</a>
         </div>
         <div id="xmlScript">
-            <textarea id="xml" cols="80" rows="40"></textarea>
+            <textarea id="xml" cols="80" rows="40">XML goes in here</textarea>
         </div>
         <div id="alpahScript">
-            <textarea id="alpha" cols="80" rows="40"></textarea>
+            <textarea id="alpha" cols="80" rows="40">SCP comes out here</textarea>
         </div>
     </body>
 </html>
