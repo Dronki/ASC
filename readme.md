@@ -8,7 +8,7 @@ I'm trying to keep this up-to speed with SCP's doc that DeathJockey provides via
 
 Working commands
 ----------------
-<code>
+<pre lang="xml"><code>
 <scene action="set" value="cliff" />
 <scene action="add" key="entity" value="bulbasaur" />
 <scene action="moveto" key="entity" value="bulbasaur" x="21" y="21" />
@@ -32,9 +32,9 @@ Working commands
 <wait value="1000" />
 
 <end type="terminate" />
-</code>
+</code><pre>
 Non-working commands
 --------------------
-<code>
+<pre lang="xml"><code>
 <dialog action="clear" /> Doesn't seem to work, working on it.
-</code>
+</code></pre>
